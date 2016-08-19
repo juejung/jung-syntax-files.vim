@@ -55,9 +55,12 @@ syn keyword stataCommand about
 syn keyword stataCommand adopath
 syn keyword stataCommand adoupdate
 syn keyword stataCommand ainequal
+syn keyword stataCommand aipw
 syn keyword stataCommand all
 syn keyword stataCommand assert
 syn keyword stataCommand areg[ress]
+syn keyword stataCommand ate
+syn keyword stataCommand atet
 syn keyword stataCommand break
 syn keyword stataCommand brief
 syn keyword stataCommand by
@@ -102,6 +105,7 @@ syn keyword stataCommand export
 syn keyword stataCommand file
 syn keyword stataCommand findfile
 syn keyword stataCommand format
+syn keyword stataCommand fweight
 syn keyword stataCommand graph
 syn keyword stataCommand g[enerate]
 syn keyword stataCommand gettoken
@@ -109,11 +113,15 @@ syn keyword stataCommand gl[obal]
 syn keyword stataCommand hazard
 syn keyword stataCommand help
 syn keyword stataCommand hexdump
+syn keyword stataCommand hist[ogram]
 syn keyword stataCommand include
 syn keyword stataCommand infile
 syn keyword stataCommand infix
 syn keyword stataCommand input
 syn keyword stataCommand insheet
+syn keyword stataCommand ivreg
+syn keyword stataCommand ipw
+syn keyword stataCommand ipwra
 syn keyword stataCommand joinby
 syn keyword stataCommand keep
 syn keyword stataCommand la[bel]
@@ -122,6 +130,7 @@ syn keyword stataCommand levelsof
 syn keyword stataCommand list
 syn keyword stataCommand loc[al]
 syn keyword stataCommand log
+syn keyword stataCommand logit
 syn keyword stataCommand ma[cro]
 syn keyword stataCommand mark
 syn keyword stataCommand markout
@@ -135,6 +144,7 @@ syn keyword stataCommand merge
 syn keyword stataCommand mkdir
 syn keyword stataCommand more
 syn keyword stataCommand net
+syn keyword stataCommand nnmatch
 syn keyword stataCommand nobreak
 syn keyword stataCommand n[oisily]
 syn keyword stataCommand numlist
@@ -149,6 +159,8 @@ syn keyword stataCommand post
 syn keyword stataCommand postclose
 syn keyword stataCommand postfile
 syn keyword stataCommand preserve
+syn keyword stataCommand probit
+syn keyword stataCommand psmatch
 syn keyword stataCommand psmatch2
 syn keyword stataCommand restore
 syn keyword stataCommand print
@@ -157,10 +169,12 @@ syn keyword stataCommand profiler
 syn keyword stataCommand pr[ogram]
 syn keyword stataCommand prvalue
 syn keyword stataCommand praccum
+syn keyword stataCommand predict
 syn keyword stataCommand psmatch
 syn keyword stataCommand pweight
 syn keyword stataCommand q[uery]
 syn keyword stataCommand qui[etly]
+syn keyword stataCommand ra
 syn keyword stataCommand rcof
 syn keyword stataCommand reg[ress]
 syn keyword stataCommand rename
@@ -198,6 +212,7 @@ syn keyword stataCommand tab[ulate]
 syn keyword stataCommand teffects
 syn keyword stataCommand token[ize]
 syn keyword stataCommand translate
+syn keyword stataCommand treatreg
 syn keyword stataCommand type
 syn keyword stataCommand unab
 syn keyword stataCommand unabcmd
@@ -214,6 +229,8 @@ syn keyword stataCommand who
 syn keyword stataCommand window
 syn keyword stataCommand xtile
 syn keyword stataCommand xtset
+syn keyword stataCommand xtreg[ress]
+syn keyword stataCommand xtlogit
 "}}}1
 " Literals {{{1
 syn match  stataQuote   /"/
@@ -226,12 +243,13 @@ syn cluster stataMacroGroup contains=stataGlobal,stataLocal
 syn cluster stataParenGroup contains=stataParenError,stataBracketError,stataBraceError,stataSpecial,stataFormat
 "}}}1
 " Stata functions {{{1
-" Graphs
+" Graphs {{{2
 syn region stataFunc matchgroup=Function start=/\<col(/ end=/)/ contains=@stataFuncGroup
 syn region stataFunc matchgroup=Function start=/\<exit(/ end=/)/ contains=@stataFuncGroup
 syn region stataFunc matchgroup=Function start=/\<legend(/ end=/)/ contains=@stataFuncGroup
 syn region stataFunc matchgroup=Function start=/\<name(/ end=/)/ contains=@stataFuncGroup
 syn region stataFunc matchgroup=Function start=/\<note(/ end=/)/ contains=@stataFuncGroup
+syn region stataFunc matchgroup=Function start=/\<out(/ end=/)/ contains=@stataFuncGroup
 syn region stataFunc matchgroup=Function start=/\<position(/ end=/)/ contains=@stataFuncGroup
 syn region stataFunc matchgroup=Function start=/\<subtitle(/ end=/)/ contains=@stataFuncGroup
 syn region stataFunc matchgroup=Function start=/\<title(/ end=/)/ contains=@stataFuncGroup
@@ -240,7 +258,8 @@ syn region stataFunc matchgroup=Function start=/\<xtitle(/ end=/)/ contains=@sta
 syn region stataFunc matchgroup=Function start=/\<ytitle(/ end=/)/ contains=@stataFuncGroup
 syn region stataFunc matchgroup=Function start=/\<star(/ end=/)/ contains=@stataFuncGroup
 syn region stataFunc matchgroup=Function start=/\<width(/ end=/)/ contains=@stataFuncGroup
-" Math
+"}}}2
+" Math {{{2
 syn region stataFunc matchgroup=Function start=/\<abs(/ end=/)/ contains=@stataFuncGroup
 syn region stataFunc matchgroup=Function start=/\<acos(/ end=/)/ contains=@stataFuncGroup
 syn region stataFunc matchgroup=Function start=/\<asin(/ end=/)/ contains=@stataFuncGroup
@@ -281,7 +300,8 @@ syn region stataFunc matchgroup=Function start=/\<trigamma(/ end=/)/ contains=@s
 syn region stataFunc matchgroup=Function start=/\<trunc(/ end=/)/ contains=@stataFuncGroup
 syn region stataFunc matchgroup=Function start=/\<using(/ end=/)/ contains=@stataFuncGroup
 syn region stataFunc matchgroup=Function start=/\<xis(/ end=/)/ contains=@stataFuncGroup
-" Probability distriubtions and density functions
+"}}}2
+" Probability distriubtions and density functions {{{2
 syn region stataFunc matchgroup=Function start=/\<betaden(/ end=/)/ contains=@stataFuncGroup
 syn region stataFunc matchgroup=Function start=/\<Binomial(/ end=/)/ contains=@stataFuncGroup
 syn region stataFunc matchgroup=Function start=/\<binorm(/ end=/)/ contains=@stataFuncGroup
@@ -329,7 +349,8 @@ syn region stataFunc matchgroup=Function start=/\<ttail(/ end=/)/ contains=@stat
 " Random numbers
 syn region stataFunc matchgroup=Function start=/\<uniform(/ end=/)/ contains=@stataFuncGroup
 syn region stataFunc matchgroup=Function start=/\<runiform(/ end=/)/ contains=@stataFuncGroup
-" String
+"}}}2
+" String {{{2
 syn region stataFunc matchgroup=Function start=/\<abbrev(/ end=/)/ contains=@stataFuncGroup
 syn region stataFunc matchgroup=Function start=/\<hchar(/ end=/)/ contains=@stataFuncGroup
 syn region stataFunc matchgroup=Function start=/\<indexnot(/ end=/)/ contains=@stataFuncGroup
@@ -357,7 +378,8 @@ syn region stataFunc matchgroup=Function start=/\<trim(/ end=/)/ contains=@stata
 syn region stataFunc matchgroup=Function start=/\<upper(/ end=/)/ contains=@stataFuncGroup
 syn region stataFunc matchgroup=Function start=/\<word(/ end=/)/ contains=@stataFuncGroup
 syn region stataFunc matchgroup=Function start=/\<wordcount(/ end=/)/ contains=@stataFuncGroup
-" Programming
+"}}}2
+" Programming {{{2
 syn region stataFunc matchgroup=Function start=/\<autocode(/ end=/)/ contains=@stataFuncGroup
 syn region stataFunc matchgroup=Function start=/\<byteorder(/ end=/)/ contains=@stataFuncGroup
 syn region stataFunc matchgroup=Function start=/\<c(/ end=/)/ contains=@stataFuncGroup
@@ -396,7 +418,8 @@ syn region stataFunc matchgroup=Function start=/\<return(/ end=/)/ contains=@sta
 syn region stataFunc matchgroup=Function start=/\<s(/ end=/)/ contains=@stataFuncGroup
 syn region stataFunc matchgroup=Function start=/\<x(/ end=/)/ contains=@stataFuncGroup
 syn region stataFunc matchgroup=Function start=/\<scalar(/ end=/)/ contains=@stataFuncGroup
-" Date
+"}}}2
+" Date {{{2
 syn region stataFunc matchgroup=Function start=/\<d(/ end=/)/ contains=@stataFuncGroup
 syn region stataFunc matchgroup=Function start=/\<date(/ end=/)/ contains=@stataFuncGroup
 syn region stataFunc matchgroup=Function start=/\<day(/ end=/)/ contains=@stataFuncGroup
@@ -408,14 +431,17 @@ syn region stataFunc matchgroup=Function start=/\<month(/ end=/)/ contains=@stat
 syn region stataFunc matchgroup=Function start=/\<quarter(/ end=/)/ contains=@stataFuncGroup
 syn region stataFunc matchgroup=Function start=/\<week(/ end=/)/ contains=@stataFuncGroup
 syn region stataFunc matchgroup=Function start=/\<year(/ end=/)/ contains=@stataFuncGroup
-" Survival analysis
+"}}}2
+" Survival analysis {{{2
 syn region stataFunc matchgroup=Function start=/\<failure(/ end=/)/ contains=@stataFuncGroup
 syn region stataFunc matchgroup=Function start=/\<kernel(/ end=/)/ contains=@stataFuncGroup
 syn region stataFunc matchgroup=Function start=/\<at1(/ end=/)/ contains=@stataFuncGroup
 syn region stataFunc matchgroup=Function start=/\<at2(/ end=/)/ contains=@stataFuncGroup
-" Panel
+"}}}2
+" Panel {{{2
 syn region stataFunc matchgroup=Function start=/\<id(/ end=/)/ contains=@stataFuncGroup
-" Time-series
+"}}}2
+" Time-series {{{2
 syn region stataFunc matchgroup=Function start=/\<daily(/ end=/)/ contains=@stataFuncGroup
 syn region stataFunc matchgroup=Function start=/\<daily(/ end=/)/ contains=@stataFuncGroup
 syn region stataFunc matchgroup=Function start=/\<halfyearly(/ end=/)/ contains=@stataFuncGroup
@@ -450,7 +476,8 @@ syn region stataFunc matchgroup=Function start=/\<yofd(/ end=/)/ contains=@stata
 "
 syn region stataFunc matchgroup=Function start=/\<tin(/ end=/)/ contains=@stataFuncGroup
 syn region stataFunc matchgroup=Function start=/\<twithin(/ end=/)/ contains=@stataFuncGroup
-" Matrix
+"}}}2
+" Matrix {{{2
 syn region stataFunc matchgroup=Function start=/\<colnumb(/ end=/)/ contains=@stataFuncGroup
 syn region stataFunc matchgroup=Function start=/\<colsof(/ end=/)/ contains=@stataFuncGroup
 syn region stataFunc matchgroup=Function start=/\<det(/ end=/)/ contains=@stataFuncGroup
@@ -477,9 +504,13 @@ syn region stataFunc matchgroup=Function start=/\<nullmat(/ end=/)/ contains=@st
 syn region stataFunc matchgroup=Function start=/\<sweep(/ end=/)/ contains=@stataFuncGroup
 syn region stataFunc matchgroup=Function start=/\<vec(/ end=/)/ contains=@stataFuncGroup
 syn region stataFunc matchgroup=Function start=/\<vecdiag(/ end=/)/ contains=@stataFuncGroup
-" Regress Options
+"}}}2
+" Regress Options {{{2
 syn region stataFunc matchgroup=Function start=/\<absorb(/ end=/)/ contains=@stataFuncGroup
 syn region stataFunc matchgroup=Function start=/\<cluster(/ end=/)/ contains=@stataFuncGroup
+syn region stataFunc matchgroup=Function start=/\<nn(/ end=/)/ contains=@stataFuncGroup
+syn region stataFunc matchgroup=Function start=/\<gen(/ end=/)/ contains=@stataFuncGroup
+"}}}2
 "}}}1
 " Highlighting Operators {{{1
 syntax match stataOperator "\$"   

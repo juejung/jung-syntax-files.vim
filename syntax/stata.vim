@@ -1,4 +1,4 @@
-" stata.vim -- Vim syntax file for Stata do, ado, and class files.
+" stata.vim -- Vim syntax file for Stata do, ado, and class files. {{{1
 " Language:	Stata and/or Mata
 " Maintainer:	Jeff Pitblado <jpitblado@stata.com>
 " Last Change:	26apr2006
@@ -43,20 +43,21 @@ syn match  stataFormat /%-\=\d\+\.\d\+[efg]c\=/
 syn match  stataFormat /%-\=21x/
 " string format
 syn match  stataFormat /%\(\|-\|\~\)\d\+s/
-
-" Statements
+"}}}1
+" Statements {{{1
 syn keyword stataConditional else if
 syn keyword stataRepeat      foreach
 syn keyword stataRepeat      forv[alues]
 syn keyword stataRepeat      while
-
-" Common programming commands
+"}}}1
+" Common programming commands {{{1
 syn keyword stataCommand about
 syn keyword stataCommand adopath
 syn keyword stataCommand adoupdate
 syn keyword stataCommand ainequal
 syn keyword stataCommand all
 syn keyword stataCommand assert
+syn keyword stataCommand areg[ress]
 syn keyword stataCommand break
 syn keyword stataCommand brief
 syn keyword stataCommand by
@@ -69,6 +70,7 @@ syn keyword stataCommand classutil
 syn keyword stataCommand clear
 syn keyword stataCommand clonevar
 syn keyword stataCommand cls
+syn keyword stataCommand coefplot
 syn keyword stataCommand collapse
 syn keyword stataCommand combine
 syn keyword stataCommand compress
@@ -92,6 +94,8 @@ syn keyword stataCommand end
 syn keyword stataCommand erase
 syn keyword stataCommand eret[urn]
 syn keyword stataCommand err[or]
+syn keyword stataCommand eststo
+syn keyword stataCommand esttab
 syn keyword stataCommand expand
 syn keyword stataCommand expandcl
 syn keyword stataCommand export
@@ -113,6 +117,7 @@ syn keyword stataCommand insheet
 syn keyword stataCommand joinby
 syn keyword stataCommand keep
 syn keyword stataCommand la[bel]
+syn keyword stataCommand variable
 syn keyword stataCommand levelsof
 syn keyword stataCommand list
 syn keyword stataCommand loc[al]
@@ -144,6 +149,7 @@ syn keyword stataCommand post
 syn keyword stataCommand postclose
 syn keyword stataCommand postfile
 syn keyword stataCommand preserve
+syn keyword stataCommand psmatch2
 syn keyword stataCommand restore
 syn keyword stataCommand print
 syn keyword stataCommand printer
@@ -188,6 +194,7 @@ syn keyword stataCommand syntax
 syn keyword stataCommand sysdescribe
 syn keyword stataCommand sysdir
 syn keyword stataCommand sysuse
+syn keyword stataCommand tab[ulate]
 syn keyword stataCommand teffects
 syn keyword stataCommand token[ize]
 syn keyword stataCommand translate
@@ -206,8 +213,9 @@ syn keyword stataCommand which
 syn keyword stataCommand who
 syn keyword stataCommand window
 syn keyword stataCommand xtile
-
-" Literals
+syn keyword stataCommand xtset
+"}}}1
+" Literals {{{1
 syn match  stataQuote   /"/
 syn region stataEString matchgroup=Nothing start=/`"/ end=/"'/ oneline contains=@stataMacroGroup,stataQuote,stataString,stataEString
 syn region stataString  matchgroup=Nothing start=/"/ end=/"/   oneline contains=@stataMacroGroup
@@ -216,8 +224,8 @@ syn region stataString  matchgroup=Nothing start=/"/ end=/"/   oneline contains=
 syn cluster stataFuncGroup contains=@stataMacroGroup,stataFunc,stataString,stataEstring,stataParen,stataBracket
 syn cluster stataMacroGroup contains=stataGlobal,stataLocal
 syn cluster stataParenGroup contains=stataParenError,stataBracketError,stataBraceError,stataSpecial,stataFormat
-
-" Stata functions
+"}}}1
+" Stata functions {{{1
 " Graphs
 syn region stataFunc matchgroup=Function start=/\<col(/ end=/)/ contains=@stataFuncGroup
 syn region stataFunc matchgroup=Function start=/\<exit(/ end=/)/ contains=@stataFuncGroup
@@ -227,6 +235,10 @@ syn region stataFunc matchgroup=Function start=/\<note(/ end=/)/ contains=@stata
 syn region stataFunc matchgroup=Function start=/\<position(/ end=/)/ contains=@stataFuncGroup
 syn region stataFunc matchgroup=Function start=/\<subtitle(/ end=/)/ contains=@stataFuncGroup
 syn region stataFunc matchgroup=Function start=/\<title(/ end=/)/ contains=@stataFuncGroup
+syn region stataFunc matchgroup=Function start=/\<mtitle(/ end=/)/ contains=@stataFuncGroup
+syn region stataFunc matchgroup=Function start=/\<xtitle(/ end=/)/ contains=@stataFuncGroup
+syn region stataFunc matchgroup=Function start=/\<ytitle(/ end=/)/ contains=@stataFuncGroup
+syn region stataFunc matchgroup=Function start=/\<star(/ end=/)/ contains=@stataFuncGroup
 syn region stataFunc matchgroup=Function start=/\<width(/ end=/)/ contains=@stataFuncGroup
 " Math
 syn region stataFunc matchgroup=Function start=/\<abs(/ end=/)/ contains=@stataFuncGroup
@@ -254,6 +266,7 @@ syn region stataFunc matchgroup=Function start=/\<log10(/ end=/)/ contains=@stat
 syn region stataFunc matchgroup=Function start=/\<logit(/ end=/)/ contains=@stataFuncGroup
 syn region stataFunc matchgroup=Function start=/\<max(/ end=/)/ contains=@stataFuncGroup
 syn region stataFunc matchgroup=Function start=/\<min(/ end=/)/ contains=@stataFuncGroup
+syn region stataFunc matchgroup=Function start=/\<mean(/ end=/)/ contains=@stataFuncGroup
 syn region stataFunc matchgroup=Function start=/\<mod(/ end=/)/ contains=@stataFuncGroup
 syn region stataFunc matchgroup=Function start=/\<reldif(/ end=/)/ contains=@stataFuncGroup
 syn region stataFunc matchgroup=Function start=/\<round(/ end=/)/ contains=@stataFuncGroup
@@ -464,8 +477,44 @@ syn region stataFunc matchgroup=Function start=/\<nullmat(/ end=/)/ contains=@st
 syn region stataFunc matchgroup=Function start=/\<sweep(/ end=/)/ contains=@stataFuncGroup
 syn region stataFunc matchgroup=Function start=/\<vec(/ end=/)/ contains=@stataFuncGroup
 syn region stataFunc matchgroup=Function start=/\<vecdiag(/ end=/)/ contains=@stataFuncGroup
-
-" Errors to catch
+" Regress Options
+syn region stataFunc matchgroup=Function start=/\<absorb(/ end=/)/ contains=@stataFuncGroup
+syn region stataFunc matchgroup=Function start=/\<cluster(/ end=/)/ contains=@stataFuncGroup
+"}}}1
+" Highlighting Operators {{{1
+syntax match stataOperator "\$"   
+syntax match stataOperator "\!"   
+syntax match stataOperator "\v\+"
+syntax match stataOperator "\v\|"
+syntax match stataOperator "\v\&"
+syntax match stataOperator "\v-"
+syntax match stataOperator "\v\?" 
+syntax match stataOperator "\v\+\="
+syntax match stataOperator "\v-\="
+syntax match stataOperator "\v\="
+syntax match stataOperator "\v\>"
+syntax match stataOperator "\v\<"
+"}}}1
+" Highlighting numbers {{{1
+syn match   statasHexNumber "\<0[xX]\x\+[lL]\=\>" display
+syn match   statasOctNumber "\<0[oO]\o\+[lL]\=\>" display
+syn match   statasBinNumber "\<0[bB][01]\+[lL]\=\>" display
+syn match   statasHexNumber "\<0[xX]\x\+\>" display
+syn match   statasOctNumber "\<0[oO]\o\+\>" display
+syn match   statasBinNumber "\<0[bB][01]\+\>" display
+syn match   statasNumber  "\<\d\>" display
+syn match   statasNumber  "\<[1-9]\d\+\>" display
+syn match   statasNumber  "\<\d\+[jJ]\>" display
+syn match   statasFloat   "\.\d\+\%([eE][+-]\=\d\+\)\=[jJ]\=\>" display
+syn match   statasFloat   "\<\d\+[eE][+-]\=\d\+[jJ]\=\>" display
+syn match   statasFloat   "\<\d\+\.\d*\%([eE][+-]\=\d\+\)\=[jJ]\=" display
+hi def link statasNumber           Number
+hi def link statasHexNumber        Number
+hi def link statasOctNumber        Number
+hi def link statasBinNumber        Number
+hi def link statasFloat            Float 
+"}}}1
+" Errors to catch {{{1
 " taken from $VIMRUNTIME/syntax/c.vim 
 " catch errors caused by wrong parenthesis, braces and brackets
 syn region	stataParen	transparent start=/(/ end=/)/  contains=ALLBUT,@stataParenGroup,stataErrInBracket,stataErrInBrace
@@ -477,8 +526,8 @@ syn match	stataBraceError	/}/
 syn match	stataErrInParen	contained /[\]}]/
 syn match	stataErrInBracket	contained /[)}]/
 syn match	stataErrInBrace	contained /[)\]]/
-
-" assign highlight groups
+"}}}1
+" assign highlight groups {{{1
 hi def link stataBraceError	stataError
 hi def link stataBracketError	stataError
 hi def link stataErrInBrace	stataError
@@ -492,7 +541,7 @@ hi def link stataParenError	stataError
 hi def link stataSlashComment	stataComment
 hi def link stataSlash2Comment	stataComment
 hi def link stataStarComment	stataComment
-
+hi def link stataOperator       Operator  
 hi def link stataCommand	Define
 hi def link stataComment	Comment
 hi def link stataConditional	Conditional
@@ -504,5 +553,5 @@ hi def link stataSpecial	SpecialChar
 hi def link stataString		String
 
 let b:current_syntax = "stata"
-
+"}}}1
 " vim: ts=8

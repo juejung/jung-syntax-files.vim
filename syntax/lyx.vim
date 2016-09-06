@@ -7,16 +7,15 @@
 " Description:
 "   Highlight LyX documents without the ridiculous amount of complexity used
 " Load control {{{1
-if exists("b:current_syntax")
-  finish
+if version < 600
+	syntax clear
+elseif exists("b:current_syntax")
+	finish
 endif
 
-let s:cpo_save = &cpo
-set cpo&vim
+syntax case match
 
-" Beginnings "{{{1
-syntax clear
-
+" Begin {{{1
 syntax keyword lyxCommand  \\layout
 syntax keyword lyxCommand  \\the_end
 syntax keyword lyxKey LatexCommand ERT Graphics Float FloatList 
@@ -32,7 +31,7 @@ highlight link lyxKey Keyword
 highlight link lyxString String
 highlight link lyxInset Comment
 highlight link lyxBinary Boolean
+
 " {{{1 Cleanup
-let   b:current_syntax = "lyx"
-let &cpo               = s:cpo_save
+let b:current_syntax = "lyx"
 

@@ -303,7 +303,6 @@ endif
 
 " }}}
 
-
 if g:pymode_syntax_slow_sync
     syn sync minlines=2000
 else

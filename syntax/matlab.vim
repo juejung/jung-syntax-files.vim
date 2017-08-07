@@ -19,13 +19,15 @@ endif
 syn keyword matlabStatement		return
 syn keyword matlabLabel			case switch
 syn keyword matlabConditional		else elseif end if otherwise
-syn keyword matlabRepeat		do for while
+syn keyword matlabRepeat		do for while 
 " MT_ADDON - added exception-specific keywords
 syn keyword matlabExceptions		try catch
 syn keyword matlabOO			classdef properties events methods
 
 syn keyword matlabTodo			contained  TODO
 syn keyword matlabScope			global persistent
+
+syn keyword matlabOutput                fprintf disp
 
 " If you do not want these operators lit, uncommment them and the "hi link" below
 syn match matlabArithmeticOperator	"[-+]"
@@ -72,6 +74,9 @@ syn keyword matlabFunction		error eval function
 syn keyword matlabImplicit		abs acos atan asin cos cosh exp log prod sum
 syn keyword matlabImplicit		log10 max min sign sin sinh sqrt tan reshape
 
+syn match matlabUserFunction "\%(f_\w\+\)"
+syn match matlabUserFunction "\%(fn_\w\+\)"
+
 syn match matlabError	"-\=\<\d\+\.\d\+\.[^*/\\^]"
 syn match matlabError	"-\=\<\d\+\.\d\+[eEdD][-+]\=\d\+\.\([^*/\\^]\)"
 
@@ -93,6 +98,7 @@ if version >= 508 || !exists("did_matlab_syntax_inits")
   HiLink matlabConditional		Conditional
   HiLink matlabExceptions		Conditional
   HiLink matlabRepeat			Repeat
+  HiLink matlabOutput			Define
   HiLink matlabTodo			Todo
   HiLink matlabString			String
   HiLink matlabDelimiter		Identifier
@@ -100,6 +106,7 @@ if version >= 508 || !exists("did_matlab_syntax_inits")
   HiLink matlabNumber			Number
   HiLink matlabFloat			Float
   HiLink matlabFunction			Function
+  HiLink matlabUserFunction		Function
   HiLink matlabError			Error
   HiLink matlabImplicit			matlabStatement
   HiLink matlabStatement		Statement

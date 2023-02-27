@@ -19,7 +19,7 @@ endif
 syn keyword matlabStatement		return
 syn keyword matlabLabel			case switch
 syn keyword matlabConditional		else elseif end if otherwise
-syn keyword matlabRepeat		do for while 
+syn keyword matlabRepeat		do for parfor while 
 " MT_ADDON - added exception-specific keywords
 syn keyword matlabExceptions		try catch
 syn keyword matlabOO			classdef properties events methods

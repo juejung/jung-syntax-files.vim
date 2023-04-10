@@ -64,6 +64,7 @@ syn keyword stataCommand atet
 syn keyword stataCommand break
 syn keyword stataCommand brief
 syn keyword stataCommand by
+syn keyword stataCommand bysort
 syn keyword stataCommand cap[ture]
 syn keyword stataCommand cd
 syn keyword stataCommand chdir
@@ -98,6 +99,7 @@ syn keyword stataCommand erase
 syn keyword stataCommand eret[urn]
 syn keyword stataCommand err[or]
 syn keyword stataCommand eststo
+syn keyword stataCommand estpost
 syn keyword stataCommand esttab
 syn keyword stataCommand expand
 syn keyword stataCommand expandcl
@@ -200,15 +202,18 @@ syn keyword stataCommand split
 syn keyword stataCommand sret[urn]
 syn keyword stataCommand ssc
 syn keyword stataCommand su[mmarize]
+syn keyword stataCommand sutex
 syn keyword stataCommand stcox
 syn keyword stataCommand stcurve
 syn keyword stataCommand stset
 syn keyword stataCommand svyset
+syn keyword stataCommand svy
 syn keyword stataCommand syntax
 syn keyword stataCommand sysdescribe
 syn keyword stataCommand sysdir
 syn keyword stataCommand sysuse
 syn keyword stataCommand tab[ulate]
+syn keyword stataCommand tabout
 syn keyword stataCommand teffects
 syn keyword stataCommand token[ize]
 syn keyword stataCommand translate
